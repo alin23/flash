@@ -2,8 +2,19 @@ set -g CMD_DURATION 0
 
 function flash_fst; set_color -o fa0; end
 function flash_snd; set_color -o C00; end
-function flash_trd; set_color -o 666; end
-function flash_dim; set_color -o 333; end
+function flash_trd; set_color -o 777; end
+function flash_dim; set_color -o 444; end
+function flash_env; set_color -o 56C; end
+
+function flash_charging; set_color -o 769; end
+function flash_charging_dim; set_color -o 667; end
+function flash_charged; set_color -o 5C6; end
+function flash_charged_dim; set_color -o 2a5; end
+function flash_midcharged; set_color -o fa0; end
+function flash_midcharged_dim; set_color -o e70; end
+function flash_discharged; set_color -o C00; end
+function flash_discharged_dim; set_color -o B11; end
+
 function flash_off; set_color normal; end
 function bc; command bc -l $argv; end
 
