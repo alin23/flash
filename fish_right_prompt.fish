@@ -12,7 +12,12 @@ function flash_git_is_touched
 end
 
 function flash_venv
-  command pyenv version-name ^/dev/null; or echo ""
+  set envname (command pyenv version-name ^/dev/null)
+  if string match -ri '[a-z]' $envname >/dev/null
+    echo $envname
+  else
+    echo ""
+  end
 end
 
 function flash_battery_charge
