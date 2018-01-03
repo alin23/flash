@@ -67,7 +67,9 @@ function fish_right_prompt
     printf (flash_dim)" ~"(printf "%.1fs " (math "$CMD_DURATION / 1000"))(flash_off)
   end
 
-  printf " "(flash_env)(flash_venv)(flash_off)
+  if which pyenv >/dev/null ^/dev/null
+    printf " "(flash_env)(flash_venv)(flash_off)
+  end
 
   if test -d .git
     if flash_git_is_stashed
