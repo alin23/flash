@@ -14,7 +14,7 @@ end
 function flash_venv
   set envname (command pyenv version-name ^/dev/null)
   if string match -ri '[a-z]' $envname >/dev/null
-    echo $envname
+    echo " $envname"
   else
     echo ""
   end
@@ -69,7 +69,7 @@ function fish_right_prompt
   flash_battery_charge
 
   if which pyenv >/dev/null ^/dev/null
-    printf " "(flash_env)(flash_venv)(flash_off)
+    printf (flash_env)(flash_venv)(flash_off)
   end
 
   if test -d .git

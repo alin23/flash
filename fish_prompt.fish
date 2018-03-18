@@ -1,5 +1,6 @@
 set -g CMD_DURATION 0
 
+function flash_alert; set_color -r F0476D; end
 function flash_fst; set_color -o F0476D; end
 function flash_snd; set_color -o EEA87A; end
 function flash_trd; set_color -o 777; end
@@ -28,7 +29,7 @@ function ssh_hostname
   if set -q $SSH_CLIENT
     echo ''
   else
-    echo (hostname)' '
+    echo (flash_alert)' '(hostname)' '(flash_off)' '
   end
 end
 
@@ -43,7 +44,7 @@ function fish_prompt
     test $code -ne 0; and echo (flash_fst); or echo (flash_dim)
   end
 
-  printf (flash_fst)(ssh_hostname)(begin
+  printf (ssh_hostname)(begin
     if string match -q '/*' $prompt
       format_path (string replace '/' (flash_snd)"$sepleft "(status::color)'#'(flash_snd)" $sepright "(flash_off) $prompt)
     else if string match -q '~*' $prompt
