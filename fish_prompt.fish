@@ -26,10 +26,10 @@ function format_path
 end
 
 function ssh_hostname
-  if set -q $SSH_CLIENT
-    echo ''
-  else
+  if set -q SSH_CLIENT
     echo (flash_alert)' '(hostname)' '(flash_off)' '
+  else
+    echo ''
   end
 end
 
