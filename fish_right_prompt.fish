@@ -58,14 +58,15 @@ function fish_right_prompt
   set -l code $status
 
   function status::color -S
-    test $code -ne 0; and echo (flash_snd); or echo (flash_fst)
+    test $code -ne 0; and echo (flash_fst); or echo (flash_snd)
   end
 
-  flash_battery_charge
 
   if test $CMD_DURATION -gt 1000
     printf (flash_dim)" ~"(printf "%.1fs " (math "$CMD_DURATION / 1000"))(flash_off)
   end
+
+  flash_battery_charge
 
   if which pyenv >/dev/null ^/dev/null
     printf " "(flash_env)(flash_venv)(flash_off)
