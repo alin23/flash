@@ -1,6 +1,6 @@
 set -g CMD_DURATION 0
 
-function flash_alert; set_color -r F0476D; end
+function flash_alert; set_color -b F0476D black; end
 function flash_fst; set_color -o F0476D; end
 function flash_snd; set_color -o EEA87A; end
 function flash_trd; set_color -o 777; end
@@ -26,7 +26,7 @@ function format_path
 end
 
 function ssh_hostname
-  if test -n "$SSH_CLIENT"
+  if set -q SSH_CLIENT
     echo (flash_alert)' '(hostname)' '(flash_off)' '
   else
     echo ''
