@@ -31,5 +31,5 @@ end
 
 
 function fish_title
-  echo "$_ ⌁ "(ssh_hostname_simple)" ➜ "(fish_prompt_simple)
+  echo "$_ ⌁ "(ssh_hostname_simple)" ⌁ "(prompt_pwd)
 end
