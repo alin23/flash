@@ -13,11 +13,11 @@ end
 
 function flash_venv
   set envname (command pyenv version-name ^/dev/null)
-  if string match -ri '[a-z]' $envname >/dev/null
-    echo " $envname"
-  else
-    echo ""
-  end
+  # if string match -ri '[a-z]' $envname >/dev/null
+  echo " $envname "
+  # else
+    # echo ""
+  # end
 end
 
 function flash_battery_charge
@@ -66,26 +66,30 @@ function fish_right_prompt
     printf (flash_dim)" ~"(printf "%.1fs " (math "$CMD_DURATION / 1000"))(flash_off)
   end
 
-  flash_battery_charge
+  # flash_battery_charge
 
   if which pyenv >/dev/null ^/dev/null
     printf (flash_env)(flash_venv)(flash_off)
   end
 
   if test -d .git
-    if flash_git_is_stashed
-      echo (flash_dim)"<"(flash_off)
+    if which -s git-prompt
+      git-prompt
+    else
+      if flash_git_is_stashed
+        echo (flash_dim)"<"(flash_off)
+      end
+      printf " "(begin
+        flash_git_is_touched
+          and echo (flash_fst)"(*"(flash_snd)(flash_git_branch_name)(flash_fst)")"(flash_off)
+          or echo (flash_snd)"("(flash_fst)(flash_git_branch_name)(flash_snd)")"(flash_off)
+      end)(flash_off)
     end
-    printf " "(begin
-      flash_git_is_touched
-        and echo (flash_fst)"(*"(flash_snd)(flash_git_branch_name)(flash_fst)")"(flash_off)
-        or echo (flash_snd)"("(flash_fst)(flash_git_branch_name)(flash_snd)")"(flash_off)
-    end)(flash_off)
   end
 
-  printf " "(flash_trd)(date +%H(status::color):(flash_trd)%M)(flash_snd)" "(flash_off)
+  # printf " "(flash_trd)(date +%H(status::color):(flash_trd)%M)(flash_snd)" "(flash_off)
 
   if test $code -ne 0
-    echo (flash_fst)"≡ "(flash_snd)"$code"(flash_off)
+    echo (flash_fst)" ≡ "(flash_snd)"$code"(flash_off)
   end
 end
