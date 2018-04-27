@@ -73,7 +73,7 @@ function fish_right_prompt
   end
 
   if test -d .git
-    if which -s git-prompt
+    if which git-prompt >/dev/null ^/dev/null
       git-prompt
     else
       if flash_git_is_stashed
