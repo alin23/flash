@@ -5,7 +5,7 @@ set -xg fish_color_command 5566CC #5566CC   the color for commands
 set -xg fish_color_quote F1AC69 #F1AC69   the color for quoted blocks of text
 set -xg fish_color_redirection 7E41BA #7E41BA   the color for IO redirections
 set -xg fish_color_end FFAD48 #FFAD48   the color for process separators like ';' and '&'
-set -xg fish_color_error FF0067 #FF0067   the color used to highlight potential errors
+set -xg fish_color_error FF134A #FF134A   the color used to highlight potential errors
 set -xg fish_color_param 5A5A87 #5A5A87   the color for regular command parameters
 set -xg fish_color_comment 67516C #67516C   the color used for code comments
 set -xg fish_color_match 74C4FF #74C4FF   the color used to highlight matching parenthesis
@@ -23,8 +23,8 @@ set -xg fish_pager_color_description 93A0C4 #93A0C4   the color of the completio
 set -xg fish_pager_color_progress FFAD48 #FFAD48    the color of the progress bar at the bottom left corner
 set -xg fish_pager_color_secondary 898080 #898080   the background color of the every second completion
 
-function flash_alert; set_color -b F02F66 black; end  #F02F66
-function flash_fst; set_color -o F02F66; end  #F02F66
+function flash_alert; set_color -b F0503C black; end  #F0503C
+function flash_fst; set_color -o F0394D; end  #F0394D
 function flash_snd; set_color -o FFC082; end  #FFC082
 function flash_trd; set_color -o 777; end  #777
 function flash_dim; set_color -o 444; end  #444
