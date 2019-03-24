@@ -1,49 +1,66 @@
 set -g CMD_DURATION 0
 
-set -xg fish_color_normal FAFAFA #FAFAFA    the default color
-set -xg fish_color_command 5566CC #5566CC   the color for commands
-set -xg fish_color_quote F1AC69 #F1AC69   the color for quoted blocks of text
-set -xg fish_color_redirection 7E41BA #7E41BA   the color for IO redirections
-set -xg fish_color_end FFAD48 #FFAD48   the color for process separators like ';' and '&'
-set -xg fish_color_error FF134A #FF134A   the color used to highlight potential errors
-set -xg fish_color_param 5A5A87 #5A5A87   the color for regular command parameters
-set -xg fish_color_comment 67516C #67516C   the color used for code comments
-set -xg fish_color_match 74C4FF #74C4FF   the color used to highlight matching parenthesis
-set -xg fish_color_search_match FFD51D #FFD51D    the color used to highlight history search matches
-set -xg fish_color_operator 93A0C4 #93A0C4    the color for parameter expansion operators like '*' and '~'
-set -xg fish_color_escape 896667 #896667    the color used to highlight character escapes like '\n' and '\x70'
-set -xg fish_color_cwd FFFFFF #FFFFFF   the color used for the current working directory in the default prompt
-set -xg fish_color_autosuggestion 67516C #67516C    the color used for autosuggestions
-set -xg fish_color_user AF5D4D #AF5D4D    the color used to print the current username in some of fish default prompts
-set -xg fish_color_host 7DC953 #7DC953    the color used to print the current host system in some of fish default prompts
-set -xg fish_color_cancel F53608 #F53608    the color for the '^C' indicator on a canceled command
-set -xg fish_pager_color_prefix FAFAFA #FAFAFA    the color of the prefix string, i.e. the string that is to be completed
-set -xg fish_pager_color_completion 67516C #67516C    the color of the completion itself
-set -xg fish_pager_color_description 93A0C4 #93A0C4   the color of the completion description
-set -xg fish_pager_color_progress FFAD48 #FFAD48    the color of the progress bar at the bottom left corner
-set -xg fish_pager_color_secondary 898080 #898080   the background color of the every second completion
+set -xg _COLOR_1  77C8BB #77C8BB
+set -xg _COLOR_9  FFDD49 #FFDD49
+set -xg _COLOR_2  FFA36F #FFA36F
+set -xg _COLOR_10  93C4B5 #93C4B5
+set -xg _COLOR_3  AA79C0 #AA79C0
+set -xg _COLOR_11 708966 #708966
+set -xg _COLOR_4  FF6448 #FF6448
+set -xg _COLOR_12 4DAFAD #4DAFAD
+set -xg _COLOR_5  D43459 #D43459
+set -xg _COLOR_13 71C964 #71C964
+set -xg _COLOR_6  5A7187 #5A7187
+set -xg _COLOR_14 BD2A06 #BD2A06
+set -xg _COLOR_7  54516C #54516C
+set -xg _COLOR_15 FFFFFF #FFFFFF
+set -xg _COLOR_8  80B3FF #80B3FF
+set -xg _COLOR_16 888976 #888976
 
-function flash_alert; set_color -b F0503C black; end  #F0503C
-function flash_fst; set_color -o F0394D; end  #F0394D
-function flash_snd; set_color -o FFC082; end  #FFC082
-function flash_trd; set_color -o 777; end  #777
-function flash_dim; set_color -o 444; end  #444
-function flash_env; set_color -o 56C; end  #56C
+set -xg fish_color_normal            $_COLOR_15                            #   the default color
+set -xg fish_color_command           $_COLOR_2                            #  the color for commands
+set -xg fish_color_quote             $_COLOR_1                            #  the color for quoted blocks of text
+set -xg fish_color_redirection       $_COLOR_3                            #  the color for IO redirections
+set -xg fish_color_end               $_COLOR_4                            #  the color for process separators like ';' and '&'
+set -xg fish_color_error             $_COLOR_5                            #  the color used to highlight potential errors
+set -xg fish_color_param             $_COLOR_6                            #  the color for regular command parameters
+set -xg fish_color_comment           $_COLOR_7                            #  the color used for code comments
+set -xg fish_color_match             $_COLOR_8                            #  the color used to highlight matching parenthesis
+set -xg fish_color_search_match      $_COLOR_9                            #   the color used to highlight history search matches
+set -xg fish_color_operator          $_COLOR_10                            #   the color for parameter expansion operators like '*' and '~'
+set -xg fish_color_escape            $_COLOR_11                            #   the color used to highlight character escapes like '\n' and '\x70'
+set -xg fish_color_cwd               $_COLOR_15                            #  the color used for the current working directory in the default prompt
+set -xg fish_color_autosuggestion    $_COLOR_7                            #   the color used for autosuggestions
+set -xg fish_color_user              $_COLOR_12                            #   the color used to print the current username in some of fish default prompts
+set -xg fish_color_host              $_COLOR_13                            #   the color used to print the current host system in some of fish default prompts
+set -xg fish_color_cancel            $_COLOR_9                            #   the color for the '^C' indicator on a canceled command
+set -xg fish_pager_color_prefix      $_COLOR_15                            #   the color of the prefix string, i.e. the string that is to be completed
+set -xg fish_pager_color_completion  $_COLOR_7                            #   the color of the completion itself
+set -xg fish_pager_color_description $_COLOR_10                            #  the color of the completion description
+set -xg fish_pager_color_progress    $_COLOR_4                            #   the color of the progress bar at the bottom left corner
+set -xg fish_pager_color_secondary   $_COLOR_16                            #  the background color of the every second completion
 
-function flash_charging; set_color -o 4F58B5; end  #4F58B5
-function flash_charging_dim; set_color -o 5B5979; end  #5B5979
-function flash_charged; set_color -o 3BF1AF; end  #3BF1AF
-function flash_charged_dim; set_color -o 5ECDA4; end  #5ECDA4
-function flash_midcharged; set_color -o EEA87A; end  #EEA87A
+function flash_alert; set_color -b F0503C black; end     #F0503C
+function flash_fst; set_color -o FFA36F; end             #FFA36F
+function flash_snd; set_color -o 5FF0AE; end             #5FF0AE
+function flash_trd; set_color -o 777; end                #777
+function flash_dim; set_color -o 444; end                #444
+function flash_env; set_color -o 5FF0AE; end                #5FF0AE
+
+function flash_charging; set_color -o 4F58B5; end        #4F58B5
+function flash_charging_dim; set_color -o 5B5979; end    #5B5979
+function flash_charged; set_color -o 3BF1AF; end         #3BF1AF
+function flash_charged_dim; set_color -o 5ECDA4; end     #5ECDA4
+function flash_midcharged; set_color -o EEA87A; end      #EEA87A
 function flash_midcharged_dim; set_color -o DEA87A; end  #DEA87A
-function flash_discharged; set_color -o F0476D; end  #F0476D
-function flash_discharged_dim; set_color -o B11; end  #B11
+function flash_discharged; set_color -o F0476D; end      #F0476D
+function flash_discharged_dim; set_color -o B11; end     #B11
 
 function flash_off; set_color normal; end
 function bc; command bc -l $argv; end
 
 function format_path
-  set -l sepright ' ) '
+  set -l sepright ' \u276F '
   set -l base (basename "$argv[1]")
   string replace -a '/' (flash_snd)$sepright(flash_off) $argv[1] | string replace -r (string escape $base)'$' (flash_fst)$base(flash_off)
 end
@@ -58,8 +75,8 @@ end
 
 function fish_prompt
   set -l code $status
-  set -l sepleft '('
-  set -l sepright ')'
+  set -l sepleft ''
+  set -l sepright \u276F
   set -l user (whoami)
 
   set -l prompt (prompt_pwd)
