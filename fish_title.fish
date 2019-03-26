@@ -1,6 +1,8 @@
 function ssh_hostname_simple
   if set -q SSH_CLIENT
     printf (hostname)" SSH \u276F "
+  else
+    echo -n ''
   end
 end
 
@@ -28,5 +30,7 @@ function fish_prompt_simple
 end
 
 function fish_title
-  echo (ssh_hostname_simple)(fish_last_cmd $argv)
+  set -l _ssh_hostname (ssh_hostname_simple)
+  set -l _last_cmd (fish_last_cmd $argv)
+  echo "$_ssh_hostname $_last_cmd"
 end
