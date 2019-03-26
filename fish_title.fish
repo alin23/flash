@@ -1,8 +1,6 @@
 function ssh_hostname_simple
   if set -q SSH_CLIENT
-    echo (whoami)'@'(hostname)
-  else
-    whoami
+    printf (hostname)" SSH \u276F "
   end
 end
 
@@ -29,7 +27,6 @@ function fish_prompt_simple
   end)(test (string length $prompt) -ne 1; and echo " $sepright "; or echo '')
 end
 
-
 function fish_title
-  echo "$_ ⌁ "(ssh_hostname_simple)" ⌁ "(prompt_pwd)
+  echo (ssh_hostname_simple)(fish_last_cmd $argv)
 end
