@@ -72,7 +72,7 @@ function fish_right_prompt
     printf (flash_env)(flash_venv)(flash_off)
   end
 
-  if test -d .git
+  if test -d .git ;and not test -f .git-prompt-disable
     if which git-prompt >/dev/null ^/dev/null
       git-prompt
     else
