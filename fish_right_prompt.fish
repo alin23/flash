@@ -16,7 +16,7 @@ function flash_venv
   # if string match -ri '[a-z]' $envname >/dev/null
   echo " $envname "
   # else
-    # echo ""
+  # echo ""
   # end
 end
 
@@ -50,15 +50,24 @@ function flash_battery_charge
 
   set timecolor $battcolor'_dim'
 
-  printf  " "(eval $battcolor)"$percentage%%"(eval $timecolor)"$remaining"(flash_off)
+  printf " "(eval $battcolor)"$percentage%%"(eval $timecolor)"$remaining"(flash_off)
 end
 
+set -xg GIT_PROMPT_EXISTS (which git-prompt ^/dev/null)
+set -xg PYENV_EXISTS (which pyenv ^/dev/null)
+set -xg PYENV_VERSION_PROMPT (flash_env)(flash_venv)(flash_off)
+
+function update_pyenv_version_prompt --on-variable PYENV_VERSION
+  set -xg PYENV_VERSION_PROMPT (flash_env)(flash_venv)(flash_off)
+end
 
 function fish_right_prompt
   set -l code $status
 
   function status::color -S
-    test $code -ne 0; and echo (flash_fst); or echo (flash_snd)
+    test $code -ne 0
+    and echo (flash_fst)
+    or echo (flash_snd)
   end
 
 
@@ -68,12 +77,13 @@ function fish_right_prompt
 
   # flash_battery_charge
 
-  if which pyenv >/dev/null ^/dev/null
-    printf (flash_env)(flash_venv)(flash_off)
+  if test -n "$PYENV_EXISTS"
+    printf "$PYENV_VERSION_PROMPT"
   end
 
-  if test -d .git ;and not test -f .git-prompt-disable
-    if which git-prompt >/dev/null ^/dev/null
+  if test -d .git
+    and not test -f .git-prompt-disable
+    if test -n "$GIT_PROMPT_EXISTS"
       git-prompt
     else
       if flash_git_is_stashed

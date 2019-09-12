@@ -38,7 +38,8 @@ set -xg fish_pager_color_prefix      $_COLOR_15                            #   t
 set -xg fish_pager_color_completion  $_COLOR_7                            #   the color of the completion itself
 set -xg fish_pager_color_description $_COLOR_10                            #  the color of the completion description
 set -xg fish_pager_color_progress    $_COLOR_4                            #   the color of the progress bar at the bottom left corner
-set -xg fish_pager_color_secondary   $_COLOR_16                            #  the background color of the every second completion
+set -xg fish_pager_color_secondary   $_COLOR_16
+set -xg HOSTNAME (hostname)
 
 function flash_alert; set_color -b F0503C black; end     #F0503C
 function flash_fst; set_color -o FFA36F; end             #FFA36F
@@ -67,7 +68,7 @@ end
 
 function ssh_hostname
   if set -q SSH_CLIENT
-    echo (flash_alert)' '(hostname)' '(flash_off)' '
+    echo (flash_alert)' '$HOSTNAME' '(flash_off)' '
   else
     echo ''
   end
@@ -77,7 +78,7 @@ function fish_prompt
   set -l code $status
   set -l sepleft ''
   set -l sepright \u276F
-  set -l user (whoami)
+  # set -l user (whoami)
 
   set -l prompt (prompt_pwd)
   function status::color -S
@@ -92,5 +93,5 @@ function fish_prompt
     else
       format_path $prompt
     end
-  end)(test (string length $prompt) -ne 1; and echo (flash_snd)" $sepright "(flash_off); or echo '')(test $user = 'root'; and echo (flash_env)"# "(flash_off); or echo '')
+  end)(test (string length $prompt) -ne 1; and echo (flash_snd)" $sepright "(flash_off); or echo '')
 end
