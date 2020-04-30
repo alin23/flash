@@ -1,4 +1,5 @@
 set -g CMD_DURATION 0
+set -xg HOSTNAME (hostname)
 
 function dark_mode
   set -e FISH_LIGHT_MODE
@@ -29,15 +30,15 @@ function light_mode
 
   set -xg _COLOR_1 63A69B #63A69B
   set -xg _COLOR_9 E5C22E #E5C22E
-  set -xg _COLOR_2 FFA36F #FFA36F
-  set -xg _COLOR_10 678A7F #678A7F
+  set -xg _COLOR_2 C07245 #C07245
+  set -xg _COLOR_10 0B855E #0B855E
   set -xg _COLOR_3 AA79C0 #AA79C0
   set -xg _COLOR_11 43523D #43523D
   set -xg _COLOR_4 FF6448 #FF6448
   set -xg _COLOR_12 4DAFAD #4DAFAD
   set -xg _COLOR_5 D43459 #D43459
   set -xg _COLOR_13 71C964 #71C964
-  set -xg _COLOR_6 5A7187 #5A7187
+  set -xg _COLOR_6 253545 #253545
   set -xg _COLOR_14 BD2A06 #BD2A06
   set -xg _COLOR_7 54516C #54516C
   set -xg _COLOR_8 80B3FF #80B3FF
@@ -69,7 +70,6 @@ function set_all_fish_colors
   set -xg fish_pager_color_description $_COLOR_10 #  the color of the completion description
   set -xg fish_pager_color_progress $_COLOR_4 #   the color of the progress bar at the bottom left corner
   set -xg fish_pager_color_secondary $_COLOR_16
-  set -xg HOSTNAME (hostname)
 end
 
 function reset_fish_colors
