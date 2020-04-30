@@ -87,10 +87,10 @@ function flash_alert
   set_color -b F0503C black
 end #F0503C
 function flash_fst
-  set_color -o _COLOR_2
+  set_color -o $_COLOR_2
 end #FFA36F
 function flash_snd
-  set_color -o _COLOR_17
+  set_color -o $_COLOR_17
 end #5FF0AE
 function flash_trd
   set_color -o 777
@@ -99,11 +99,11 @@ function flash_dim
   set_color -o 444
 end #444
 function flash_env
-  set_color -o _COLOR_17
+  set_color -o $_COLOR_17
 end #5FF0AE
 
 function flash_charging
-  set_color -o _COLOR_18
+  set_color -o $_COLOR_18
 end #4F58B5
 function flash_charging_dim
   set_color -o 5B5979
