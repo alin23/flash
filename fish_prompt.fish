@@ -16,6 +16,8 @@ set -xg _COLOR_7 54516C #54516C
 set -xg _COLOR_15 FFFFFF #FFFFFF
 set -xg _COLOR_8 80B3FF #80B3FF
 set -xg _COLOR_16 888976 #888976
+set -xg _COLOR_17 5FF0AE #5FF0AE
+set -xg _COLOR_18 4F58B5 #4F58B5
 
 set -xg fish_color_normal $_COLOR_15 #   the default color
 set -xg fish_color_command $_COLOR_2 #  the color for commands
@@ -45,10 +47,10 @@ function flash_alert
   set_color -b F0503C black
 end #F0503C
 function flash_fst
-  set_color -o FFA36F
+  set_color -o _COLOR_2
 end #FFA36F
 function flash_snd
-  set_color -o 5FF0AE
+  set_color -o _COLOR_17
 end #5FF0AE
 function flash_trd
   set_color -o 777
@@ -57,11 +59,11 @@ function flash_dim
   set_color -o 444
 end #444
 function flash_env
-  set_color -o 5FF0AE
+  set_color -o _COLOR_17
 end #5FF0AE
 
 function flash_charging
-  set_color -o 4F58B5
+  set_color -o _COLOR_18
 end #4F58B5
 function flash_charging_dim
   set_color -o 5B5979
