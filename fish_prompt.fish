@@ -27,10 +27,10 @@ function light_mode
   set -xU FISH_LIGHT_MODE true
   set -xg _COLOR_15 000000 #000000
 
-  set -xg _COLOR_1 77C8BB #77C8BB
+  set -xg _COLOR_1 63A69B #63A69B
   set -xg _COLOR_9 E5C22E #E5C22E
   set -xg _COLOR_2 FFA36F #FFA36F
-  set -xg _COLOR_10 93C4B5 #93C4B5
+  set -xg _COLOR_10 678A7F #678A7F
   set -xg _COLOR_3 AA79C0 #AA79C0
   set -xg _COLOR_11 43523D #43523D
   set -xg _COLOR_4 FF6448 #FF6448
