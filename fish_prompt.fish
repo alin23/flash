@@ -82,7 +82,7 @@ function reset_fish_colors
     dark_mode
   end
   set_all_fish_colors
-  update_pyenv_version_prompt
+  set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)
 end
 
 if set -q FISH_LIGHT_MODE

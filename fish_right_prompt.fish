@@ -11,15 +11,6 @@ function flash_git_is_touched
   test -n (echo (command git status --porcelain))
 end
 
-function flash_venv
-  set envname (command pyenv version-name 2>/dev/null)
-  # if string match -ri '[a-z]' $envname >/dev/null
-  echo " $envname "
-  # else
-  # echo ""
-  # end
-end
-
 function flash_battery_charge
   if [ (uname) != Darwin ]
     return 0
@@ -56,14 +47,14 @@ end
 set -xg GIT_PROMPT_EXISTS (which git-prompt 2>/dev/null)
 set -xg PYENV_EXISTS (which pyenv 2>/dev/null)
 if test -n "$PYENV_EXISTS"
-  set -xg PYENV_VERSION_PROMPT (flash_env)(flash_venv)(flash_off)
+  set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)
 else
   set -xg PYENV_VERSION_PROMPT ""
 end
 
 function update_pyenv_version_prompt --on-variable PYENV_VERSION --on-variable PYENV_VIRTUAL_ENV
   if test -n "$PYENV_EXISTS"
-    set -xg PYENV_VERSION_PROMPT (flash_env)(flash_venv)(flash_off)
+    set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)
   end
 end
 
