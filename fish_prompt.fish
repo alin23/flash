@@ -7,17 +7,17 @@ function dark_mode
 
   set -xg _COLOR_1 77C8BB #77C8BB
   set -xg _COLOR_9 FFDD49 #FFDD49
-  set -xg _COLOR_2 FFA36F #FFA36F
+  set -xg _COLOR_2 FFAF00 #FFAF00
   set -xg _COLOR_10 93C4B5 #93C4B5
   set -xg _COLOR_3 AA79C0 #AA79C0
   set -xg _COLOR_11 708966 #708966
-  set -xg _COLOR_4 FF6448 #FF6448
+  set -xg _COLOR_4 0087ff #0087ff
   set -xg _COLOR_12 4DAFAD #4DAFAD
-  set -xg _COLOR_5 D43459 #D43459
+  set -xg _COLOR_5 FF0040 #FF0040
   set -xg _COLOR_13 71C964 #71C964
-  set -xg _COLOR_6 5A7187 #5A7187
+  set -xg _COLOR_6 AF5F87 #AF5F87
   set -xg _COLOR_14 BD2A06 #BD2A06
-  set -xg _COLOR_7 54516C #54516C
+  set -xg _COLOR_7 6C5166 #6C5166
   set -xg _COLOR_8 80B3FF #80B3FF
   set -xg _COLOR_16 888976 #888976
   set -xg _COLOR_17 5FF0AE #5FF0AE
