@@ -12,7 +12,7 @@ function flash_git_is_touched
 end
 
 function flash_venv
-  set envname (command pyenv version-name ^/dev/null)
+  set envname (command pyenv version-name 2>/dev/null)
   # if string match -ri '[a-z]' $envname >/dev/null
   echo " $envname "
   # else
@@ -36,7 +36,7 @@ function flash_battery_charge
   set percentage (echo $battery_info | awk 'match($0, "[0-9]+%;") { print substr($0,RSTART,RLENGTH-2) }')
   set remaining (echo $battery_info | awk 'match($0, "[0-9]+:[0-9]+ remaining") { print substr($0,RSTART,RLENGTH-10) }')
 
-  if string match -r "[0-9]{1,2}:[0-9]{1,2}" $remaining >/dev/null ^/dev/null
+  if string match -r "[0-9]{1,2}:[0-9]{1,2}" $remaining >/dev/null 2>/dev/null
     set remaining "($remaining)"
   end
 
@@ -53,8 +53,8 @@ function flash_battery_charge
   printf " "(eval $battcolor)"$percentage%%"(eval $timecolor)"$remaining"(flash_off)
 end
 
-set -xg GIT_PROMPT_EXISTS (which git-prompt ^/dev/null)
-set -xg PYENV_EXISTS (which pyenv ^/dev/null)
+set -xg GIT_PROMPT_EXISTS (which git-prompt 2>/dev/null)
+set -xg PYENV_EXISTS (which pyenv 2>/dev/null)
 if test -n "$PYENV_EXISTS"
   set -xg PYENV_VERSION_PROMPT (flash_env)(flash_venv)(flash_off)
 else

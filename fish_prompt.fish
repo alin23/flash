@@ -29,11 +29,11 @@ function light_mode
   set -xg _COLOR_15 000000 #000000
 
   set -xg _COLOR_1 63A69B #63A69B
-  set -xg _COLOR_9 E5C22E #E5C22E
+  set -xg _COLOR_9 F9B300 #F9B300
   set -xg _COLOR_2 C07245 #C07245
   set -xg _COLOR_10 0B855E #0B855E
   set -xg _COLOR_3 AA79C0 #AA79C0
-  set -xg _COLOR_11 43523D #43523D
+  set -xg _COLOR_11 223422 #223422
   set -xg _COLOR_4 FF6448 #FF6448
   set -xg _COLOR_12 4DAFAD #4DAFAD
   set -xg _COLOR_5 D43459 #D43459
@@ -43,7 +43,7 @@ function light_mode
   set -xg _COLOR_7 54516C #54516C
   set -xg _COLOR_8 80B3FF #80B3FF
   set -xg _COLOR_16 4A4B41 #4A4B41
-  set -xg _COLOR_17 5DAF89 #5DAF89
+  set -xg _COLOR_17 5280D0 #5280D0
   set -xg _COLOR_18 4F58B5 #4F58B5
 end
 
@@ -73,12 +73,16 @@ function set_all_fish_colors
 end
 
 function reset_fish_colors
-  if set -q FISH_LIGHT_MODE
+  argparse --name reset_fish_colors -x dark,light 'd/dark' 'l/light' -- $argv
+  or return 1
+
+  if set -q _flag_light; or set -q FISH_LIGHT_MODE
     light_mode
   else
     dark_mode
   end
   set_all_fish_colors
+  update_pyenv_version_prompt
 end
 
 reset_fish_colors
