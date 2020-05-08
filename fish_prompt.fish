@@ -76,7 +76,7 @@ function reset_fish_colors
   argparse --name reset_fish_colors -x dark,light 'd/dark' 'l/light' -- $argv
   or return 1
 
-  if set -q _flag_light; or set -q FISH_LIGHT_MODE
+  if set -q _flag_light
     light_mode
   else
     dark_mode
@@ -85,7 +85,11 @@ function reset_fish_colors
   update_pyenv_version_prompt
 end
 
-reset_fish_colors
+if set -q FISH_LIGHT_MODE
+  reset_fish_colors --light
+else
+  reset_fish_colors --dark
+end
 
 function flash_alert
   set_color -b F0503C black
