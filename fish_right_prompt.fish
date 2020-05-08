@@ -47,14 +47,14 @@ end
 set -xg GIT_PROMPT_EXISTS (which git-prompt 2>/dev/null)
 set -xg PYENV_EXISTS (which pyenv 2>/dev/null)
 if test -n "$PYENV_EXISTS"
-  set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)
+  set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)' '
 else
   set -xg PYENV_VERSION_PROMPT ""
 end
 
 function update_pyenv_version_prompt --on-variable PYENV_VERSION --on-variable PYENV_VIRTUAL_ENV
   if test -n "$PYENV_EXISTS"
-    set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)
+    set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)' '
   end
 end
 

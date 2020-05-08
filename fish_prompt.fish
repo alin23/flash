@@ -5,9 +5,9 @@ function dark_mode
   set -e FISH_LIGHT_MODE
   set -xg _COLOR_15 FFFFFF #FFFFFF
 
-  set -xg _COLOR_1 77C8BB #77C8BB
-  set -xg _COLOR_9 FFDD49 #FFDD49
-  set -xg _COLOR_2 FFAF00 #FFAF00
+  set -xg _COLOR_1 5EAAE2 #5EAAE2
+  set -xg _COLOR_9 FFC41A #FFC41A
+  set -xg _COLOR_2 EC8880 #EC8880
   set -xg _COLOR_10 93C4B5 #93C4B5
   set -xg _COLOR_3 AA79C0 #AA79C0
   set -xg _COLOR_11 708966 #708966
@@ -20,7 +20,7 @@ function dark_mode
   set -xg _COLOR_7 6C5166 #6C5166
   set -xg _COLOR_8 80B3FF #80B3FF
   set -xg _COLOR_16 888976 #888976
-  set -xg _COLOR_17 5FF0AE #5FF0AE
+  set -xg _COLOR_17 F2BF6C #F2BF6C
   set -xg _COLOR_18 4F58B5 #4F58B5
 end
 
@@ -82,7 +82,10 @@ function reset_fish_colors
     dark_mode
   end
   set_all_fish_colors
-  set -xg PYENV_VERSION_PROMPT (set_color -o $_COLOR_17)(command pyenv version-name 2>/dev/null)(set_color normal)
+
+  if test -n "$PYENV_EXISTS"
+    set -xg PYENV_VERSION_PROMPT (set_color -o $_COLOR_17)(command pyenv version-name 2>/dev/null)(set_color normal)' '
+  end
 end
 
 if set -q FISH_LIGHT_MODE
