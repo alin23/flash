@@ -29,8 +29,8 @@ function light_mode
   set -xg _COLOR_15 000000 #000000
 
   set -xg _COLOR_1 63A69B #63A69B
-  set -xg _COLOR_9 F9B300 #F9B300
-  set -xg _COLOR_2 C07245 #C07245
+  set -xg _COLOR_9 C72E75 #C72E75
+  set -xg _COLOR_2 DD5000 #DD5000
   set -xg _COLOR_10 0B855E #0B855E
   set -xg _COLOR_3 AA79C0 #AA79C0
   set -xg _COLOR_11 223422 #223422
