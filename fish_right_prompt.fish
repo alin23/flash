@@ -58,6 +58,14 @@ function update_pyenv_version_prompt --on-variable PYENV_VERSION --on-variable P
   end
 end
 
+function fish_prompt_ranger
+  if not set -q RANGER_LEVEL
+    echo ""
+    return 0
+  end
+  echo (flash_env) RANGER\($RANGER_LEVEL\)(flash_off)
+end
+
 function fish_right_prompt
   set -l code $status
 
@@ -95,7 +103,7 @@ function fish_right_prompt
   end
 
   # printf " "(flash_trd)(date +%H(status::color):(flash_trd)%M)(flash_snd)" "(flash_off)
-
+  fish_prompt_ranger
   if test $code -ne 0
     echo (flash_fst)" ≡ "(flash_snd)"$code"(flash_off)
   end
