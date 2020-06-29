@@ -63,7 +63,15 @@ function fish_prompt_ranger
     echo ""
     return 0
   end
-  echo (flash_env) RANGER\($RANGER_LEVEL\)(flash_off)
+  echo (set_color -o $_COLOR_1)  (flash_off)
+end
+
+function isgit
+  not test -f .git-prompt-disable
+    and test -d .git
+    or test -d ../.git
+    or test -d ../../.git
+    or test -d ../../../.git
 end
 
 function fish_right_prompt
@@ -86,8 +94,7 @@ function fish_right_prompt
     printf "$PYENV_VERSION_PROMPT"
   end
 
-  if test -d .git
-    and not test -f .git-prompt-disable
+  if isgit
     if test -n "$GIT_PROMPT_EXISTS"
       git-prompt
     else
