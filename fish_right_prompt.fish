@@ -1,4 +1,3 @@
-
 function flash_git_is_stashed
   command git rev-parse --verify --quiet refs/stash >/dev/null
 end

@@ -1,6 +1,36 @@
 set -g CMD_DURATION 0
 set -xg HOSTNAME (hostname)
 
+if test "$TERM_PROGRAM" = "Terminus-Sublime"
+  set -xg TERMINUS true
+  set -xg TERM_MARKER ''
+else
+  set -xg TERM_MARKER '\u200a'
+end
+
+function dark_mode_256
+  set -e FISH_LIGHT_MODE
+  set -xg _COLOR_15 white #FFFFFF
+
+  set -xg _COLOR_1 blue #5EAAE2
+  set -xg _COLOR_9 yellow #FFC41A
+  set -xg _COLOR_2 magenta #EC8880
+  set -xg _COLOR_10 cyan #93C4B5
+  set -xg _COLOR_3 brmagenta #AA79C0
+  set -xg _COLOR_11 green #708966
+  set -xg _COLOR_4 brblue #0087ff
+  set -xg _COLOR_12 brcyan #4DAFAD
+  set -xg _COLOR_5 red #FF0040
+  set -xg _COLOR_13 brgreen #71C964
+  set -xg _COLOR_6 magenta #AF5F87
+  set -xg _COLOR_14 brred #BD2A06
+  set -xg _COLOR_7 brblack #6C5166
+  set -xg _COLOR_8 blue #80B3FF
+  set -xg _COLOR_16 brblack #888976
+  set -xg _COLOR_17 bryellow #F2BF6C
+  set -xg _COLOR_18 blue #4F58B5
+end
+
 function dark_mode
   set -e FISH_LIGHT_MODE
   set -xg _COLOR_15 FFFFFF #FFFFFF
@@ -73,10 +103,12 @@ function set_all_fish_colors
 end
 
 function reset_fish_colors
-  argparse --name reset_fish_colors -x dark,light 'd/dark' 'l/light' -- $argv
+  argparse --name reset_fish_colors -x dark,light 'd/dark' 'l/light' 'c/color256' -- $argv
   or return 1
 
-  if set -q _flag_light
+  if set -q _flag_color256
+    dark_mode_256
+  else if set -q _flag_light
     light_mode
   else
     dark_mode
@@ -88,7 +120,9 @@ function reset_fish_colors
   end
 end
 
-if set -q FISH_LIGHT_MODE
+if set -q TERMINUS
+  reset_fish_colors --color256
+else if set -q FISH_LIGHT_MODE
   reset_fish_colors --light
 else
   reset_fish_colors --dark
@@ -151,13 +185,15 @@ function format_path
   string replace -a '/' (flash_snd)$sepright(flash_off) $argv[1] | string replace -r (string escape $base)'$' (flash_fst)$base(flash_off)
 end
 
-function ssh_hostname
+function ssh_hostname  --on-variable SSH_CLIENT
   if set -q SSH_CLIENT
-    echo (flash_alert)' '$HOSTNAME' '(flash_off)' '
+    set -xg TERM_HOSTNAME (printf (flash_alert)' '$HOSTNAME' '(flash_off)' ')
   else
-    echo ''
+    set -xg TERM_HOSTNAME ''
   end
 end
+ssh_hostname
+
 
 function fish_prompt
   set -l code $status
@@ -172,7 +208,7 @@ function fish_prompt
     or echo (flash_dim)
   end
 
-  printf '\u200a'(ssh_hostname)(begin
+  printf $TERM_MARKER$TERM_HOSTNAME(begin
     if string match -q '/*' $prompt
       format_path (string replace '/' (flash_snd)"$sepleft"(status::color)'#'(flash_snd)" $sepright "(flash_off) $prompt)
     else if string match -q '~*' $prompt
