@@ -194,6 +194,13 @@ function ssh_hostname  --on-variable SSH_CLIENT
 end
 ssh_hostname
 
+function flash_update_python_version --on-variable PWD
+  if test -f $PWD/.python-version
+    set -xg FLASH_PYTHON_VERSION (cat $PWD/.python-version)
+  else if set -q FLASH_PYTHON_VERSION
+    set -e FLASH_PYTHON_VERSION
+  end
+end
 
 function fish_prompt
   set -l code $status

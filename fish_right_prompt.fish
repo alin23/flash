@@ -51,7 +51,7 @@ else
   set -xg PYENV_VERSION_PROMPT ""
 end
 
-function update_pyenv_version_prompt --on-variable PYENV_VERSION --on-variable PYENV_VIRTUAL_ENV
+function update_pyenv_version_prompt --on-variable PYENV_VERSION --on-variable PYENV_VIRTUAL_ENV --on-variable PWD
   if test -n "$PYENV_EXISTS"
     set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)' '
   end
