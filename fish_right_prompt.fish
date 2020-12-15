@@ -3,7 +3,7 @@ function flash_git_is_stashed
 end
 
 function flash_git_branch_name
-  command git symbolic-ref --short HEAD
+  command git symbolic-ref --short HEAD 2>/dev/null
 end
 
 function flash_git_is_touched
@@ -44,6 +44,7 @@ function flash_battery_charge
 end
 
 set -xg GIT_PROMPT_EXISTS (which git-prompt 2>/dev/null)
+set -xg PRETTY_GIT_PROMPT_EXISTS (which pretty-git-prompt 2>/dev/null)
 set -xg PYENV_EXISTS (which pyenv 2>/dev/null)
 if test -n "$PYENV_EXISTS"
   set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)' '
@@ -94,7 +95,9 @@ function fish_right_prompt
   end
 
   if isgit
-    if test -n "$GIT_PROMPT_EXISTS"
+    if test -n "$PRETTY_GIT_PROMPT_EXISTS"
+      pretty-git-prompt
+    else if test -n "$GIT_PROMPT_EXISTS"
       git-prompt
     else
       if flash_git_is_stashed
