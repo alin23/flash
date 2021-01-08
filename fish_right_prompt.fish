@@ -46,17 +46,25 @@ end
 set -xg GIT_PROMPT_EXISTS (which git-prompt 2>/dev/null)
 set -xg PRETTY_GIT_PROMPT_EXISTS (which pretty-git-prompt 2>/dev/null)
 set -xg PYENV_EXISTS (which pyenv 2>/dev/null)
-if test -n "$PYENV_EXISTS"
-  set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)' '
-else
-  set -xg PYENV_VERSION_PROMPT ""
+
+function update_virtualenv_prompt --on-variable VIRTUAL_ENV
+  if set -q VIRTUAL_ENV
+    set -xg VENV_PROMPT (flash_env) (basename "$VIRTUAL_ENV") (flash_off)" "
+  else
+    set -xg VENV_PROMPT ""
+  end
 end
 
 function update_pyenv_version_prompt --on-variable PYENV_VERSION --on-variable PYENV_VIRTUAL_ENV --on-variable FLASH_PYTHON_VERSION
   if test -n "$PYENV_EXISTS"
     set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)' '
+  else
+    set -xg PYENV_VERSION_PROMPT ""
   end
 end
+
+update_virtualenv_prompt
+update_pyenv_version_prompt
 
 function fish_prompt_ranger
   if not set -q RANGER_LEVEL
@@ -92,6 +100,10 @@ function fish_right_prompt
 
   if test -n "$PYENV_EXISTS"
     printf "$PYENV_VERSION_PROMPT"
+  end
+
+  if test -n "$VENV_PROMPT"
+    printf "$VENV_PROMPT"
   end
 
   if isgit
