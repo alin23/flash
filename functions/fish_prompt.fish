@@ -203,6 +203,8 @@ function flash_update_python_version --on-variable PWD
 end
 
 function fish_prompt
+  printf "\033]7;file://$PWD\033\\"
+
   set -l code $status
   set -l sepleft ''
   set -l sepright \u276F
