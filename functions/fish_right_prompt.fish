@@ -43,10 +43,6 @@ function flash_battery_charge
   printf " "(eval $battcolor)"$percentage%%"(eval $timecolor)"$remaining"(flash_off)
 end
 
-set -xg GIT_PROMPT_EXISTS (which git-prompt 2>/dev/null)
-set -xg PRETTY_GIT_PROMPT_EXISTS (which pretty-git-prompt 2>/dev/null)
-set -xg PYENV_EXISTS (which pyenv 2>/dev/null)
-
 function update_virtualenv_prompt --on-variable VIRTUAL_ENV
   if set -q VIRTUAL_ENV
     set -xg VENV_PROMPT (flash_env) (basename "$VIRTUAL_ENV") (flash_off)" "
@@ -56,7 +52,7 @@ function update_virtualenv_prompt --on-variable VIRTUAL_ENV
 end
 
 function update_pyenv_version_prompt --on-variable PYENV_VERSION --on-variable PYENV_VIRTUAL_ENV --on-variable FLASH_PYTHON_VERSION
-  if test -n "$PYENV_EXISTS"
+  if command_exists pyenv
     set -xg PYENV_VERSION_PROMPT (flash_env)(command pyenv version-name 2>/dev/null)(flash_off)' '
   else
     set -xg PYENV_VERSION_PROMPT ""
@@ -98,7 +94,7 @@ function fish_right_prompt
 
   # flash_battery_charge
 
-  if test -n "$PYENV_EXISTS"
+  if command_exists pyenv
     printf "$PYENV_VERSION_PROMPT"
   end
 
@@ -107,9 +103,9 @@ function fish_right_prompt
   end
 
   if isgit
-    if test -n "$PRETTY_GIT_PROMPT_EXISTS"
+    if command_exists pretty-git-prompt
       pretty-git-prompt
-    else if test -n "$GIT_PROMPT_EXISTS"
+    else if command_exists git-prompt
       git-prompt
     else
       if flash_git_is_stashed
