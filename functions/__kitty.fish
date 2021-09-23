@@ -49,17 +49,27 @@ function _ksi_main
         end
 
         function _ksi_start_prompt
+            set --local cmd_status "$status"
             if test "$_ksi_prompt_state" != "postexec" -a "$_ksi_prompt_state" != "first-run"
                 _ksi_mark "D"
             end
             set --global _ksi_prompt_state "prompt_start"
             _ksi_mark "A"
+            return "$cmd_status" # preserve the value of $status
         end
 
         function _ksi_end_prompt
-            _ksi_original_fish_prompt
+            set --local cmd_status "$status"
+            # fish trims one trailing newline from the output of fish_prompt, so
+            # we need to do the same. See https://github.com/kovidgoyal/kitty/issues/4032
+            set --local op (_ksi_original_fish_prompt) # op is an array because fish splits on newlines in command substitution
+            if set -q op[2]
+                printf '%s\n' $op[1..-2] # print all but last element of array, each followed by a new line
+            end
+            printf '%s' $op[-1] # print the last component without a newline
             set --global _ksi_prompt_state "prompt_end"
             _ksi_mark "B"
+            return "$cmd_status" # preserve the value of $status
         end
 
         functions -c fish_prompt _ksi_original_fish_prompt
