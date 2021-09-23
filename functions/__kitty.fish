@@ -81,16 +81,16 @@ function _ksi_main
             return "$cmd_status" # preserve the value of $status
         end
 
-        if functions -q fish_prompt _ksi_original_fish_prompt
-            functions -e fish_prompt _ksi_original_fish_prompt
+        if functions -q _ksi_original_fish_prompt
+            functions -e _ksi_original_fish_prompt
         end
         functions -c fish_prompt _ksi_original_fish_prompt
 
         if _ksi_function_is_not_empty fish_mode_prompt
             # see https://github.com/starship/starship/issues/1283
             # for why we have to test for a non-empty fish_mode_prompt
-            if functions -q fish_mode_prompt _ksi_original_fish_mode_prompt
-                functions -e fish_mode_prompt _ksi_original_fish_mode_prompt
+            if functions -q _ksi_original_fish_mode_prompt
+                functions -e _ksi_original_fish_mode_prompt
             end
             functions -c fish_mode_prompt _ksi_original_fish_mode_prompt
             function fish_mode_prompt
