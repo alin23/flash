@@ -6,9 +6,9 @@ if status --is-interactive; and not test -f (dirname (status filename))/kitty.fi
   set KITTY_INTEGRATION_SCRIPT ""
   set KITTY (which kitty 2>/dev/null)
   if test -n "$KITTY"
-    set KITTY_INTEGRATION_SCRIPT ($KITTY +runpy "from kitty.constants import *; print(shell_integration_dir)")/kitty.fish
+    set KITTY_INTEGRATION_SCRIPT ($KITTY +runpy "from kitty.constants import *; print(shell_integration_dir)")/fish/vendor_conf.d/kitty-shell-integration.fish
   end
-  export KITTY_SHELL_INTEGRATION="enabled"
+  export KITTY_SHELL_INTEGRATION="no-title"
 
   if test -f "$KITTY_INTEGRATION_SCRIPT"
     source "$KITTY_INTEGRATION_SCRIPT"
