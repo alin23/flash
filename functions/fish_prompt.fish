@@ -1,7 +1,7 @@
 set -g CMD_DURATION 0
 set -xg HOSTNAME (hostname)
 
-if test "$TERM_PROGRAM" = "Terminus-Sublime"
+if test "$TERM_PROGRAM" = Terminus-Sublime
 	set -xg TERMINUS true
 	set -xg TERM_MARKER ''
 else
@@ -103,7 +103,7 @@ function set_all_fish_colors
 end
 
 function reset_fish_colors
-	argparse --name reset_fish_colors -x dark,light 'd/dark' 'l/light' 'c/color256' -- $argv
+	argparse --name reset_fish_colors -x dark,light d/dark l/light c/color256 -- $argv
 	or return 1
 
 	if set -q _flag_color256
@@ -182,10 +182,10 @@ end
 function format_path
 	set -l sepright ' \u276F '
 	set -l base (basename "$argv[1]")
-	string replace -a '/' (flash_snd)$sepright(flash_off) $argv[1] | string replace -r (string escape $base)'$' (flash_fst)$base(flash_off)
+	string replace -a -- / (flash_snd)$sepright(flash_off) $argv[1] | string replace -r -- (string escape $base)'$' (flash_fst)$base(flash_off)
 end
 
-function ssh_hostname  --on-variable SSH_CLIENT
+function ssh_hostname --on-variable SSH_CLIENT
 	if set -q SSH_CLIENT
 		set -xg TERM_HOSTNAME (printf (flash_alert)' '$HOSTNAME' '(flash_off)' ')
 	else
@@ -219,9 +219,9 @@ function fish_prompt
 
 	printf $TERM_HOSTNAME(begin
 		if string match -q '/*' $prompt
-			format_path (string replace '/' (flash_snd)"$sepleft"(status::color)'#'(flash_snd)" $sepright "(flash_off) $prompt)
+			format_path (string replace -- '/' (flash_snd)"$sepleft"(status::color)'#'(flash_snd)" $sepright "(flash_off) $prompt)
 		else if string match -q '~*' $prompt
-			format_path (string replace -r '~/?' (flash_snd)"$sepleft"(status::color)'⌁'(flash_snd)" $sepright "(flash_off) $prompt)
+			format_path (string replace -r -- '~/?' (flash_snd)"$sepleft"(status::color)'⌁'(flash_snd)" $sepright "(flash_off) $prompt)
 		else
 			format_path $prompt
 		end
