@@ -115,7 +115,7 @@ function reset_fish_colors
 	end
 	set_all_fish_colors
 
-	if test -n "$PYENV_EXISTS"
+	if command_exists pyenv
 		set -xg PYENV_VERSION_PROMPT (set_color -o $_COLOR_17)(command pyenv version-name 2>/dev/null)(set_color normal)' '
 	end
 end
