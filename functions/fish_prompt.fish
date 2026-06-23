@@ -54,6 +54,7 @@ function dark_mode_256
 	set -xg _COLOR_16 brblack #888976
 	set -xg _COLOR_17 bryellow #F2BF6C
 	set -xg _COLOR_18 blue #4F58B5
+	set -xg _COLOR_19 brmagenta #AF87FF
 end
 
 function dark_mode
@@ -77,6 +78,7 @@ function dark_mode
 	set -xg _COLOR_16 888976 #888976
 	set -xg _COLOR_17 F2BF6C #F2BF6C
 	set -xg _COLOR_18 4F58B5 #4F58B5
+	set -xg _COLOR_19 AF87FF #AF87FF
 end
 
 function light_mode
@@ -100,16 +102,19 @@ function light_mode
 	set -xg _COLOR_16 4A4B41 #4A4B41
 	set -xg _COLOR_17 5280D0 #5280D0
 	set -xg _COLOR_18 4F58B5 #4F58B5
+	set -xg _COLOR_19 8839EF #8839EF
 end
 
 function set_all_fish_colors
 	set -xg fish_color_normal $_COLOR_15 #   the default color
 	set -xg fish_color_command $_COLOR_2 #  the color for commands
+	set -xg fish_color_keyword $_COLOR_19 --bold #  keywords like 'if'/'for'/'function' (fish 4+, falls back to command)
 	set -xg fish_color_quote $_COLOR_1 #  the color for quoted blocks of text
 	set -xg fish_color_redirection $_COLOR_3 #  the color for IO redirections
 	set -xg fish_color_end $_COLOR_4 #  the color for process separators like ';' and '&'
 	set -xg fish_color_error $_COLOR_5 #  the color used to highlight potential errors
 	set -xg fish_color_param $_COLOR_6 #  the color for regular command parameters
+	set -xg fish_color_option $_COLOR_6 --dim #  options like '-l'/'--color' up to first '--' (fish 4+, falls back to param)
 	set -xg fish_color_comment $_COLOR_7 #  the color used for code comments
 	set -xg fish_color_match $_COLOR_8 #  the color used to highlight matching parenthesis
 	set -xg fish_color_search_match $_COLOR_9 #   the color used to highlight history search matches
